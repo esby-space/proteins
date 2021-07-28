@@ -17,16 +17,17 @@
         </header>
 
         <section id="video" class="block">
+
             <h3>Guide to Protein Modeling Tools</h3>
-            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xemYmtd8H0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>A really big thank you to other protein modeling students for making this video!</p>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xemYmtd8H0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
         </section>
 
-        <section id="renumber">
+        <section id="renumber" class="block">
 
             <h3>Renumbering PDB Files for Haddock 2.4</h2>
-
-            <p>This script was originally created by <a href="https://github.com/haddocking/pdb-tools/tree/master/pdbtools">Joao Rodriguez</a>. Translation and webpage by <a href="https://github.com/esby-space/proteins">Sebastian Branch</a>. <b>It is not perfect, you will still have to check it in a text editor!</b> The next section will discuss common errors from Haddock 2.4 and how to resolve them.</p>
+            <p>This script was originally created by <a href="https://github.com/haddocking/pdb-tools/tree/master/pdbtools">Joao Rodriguez</a>. Translation and webpage by <a href="https://github.com/esby-space/proteins">Sebastian Branch</a>. <strong>It is not perfect, you will still have to check it in a text editor!</strong> The next section will discuss common errors from Haddock 2.4 and how to resolve them.</p>
 
             <form id="renumber-form" class="block" autocomplete="off">
 
@@ -61,9 +62,47 @@
 
         </section>
 
-        <footer>
-            <p>This website was created using Bluma.</p>
-        </footer>
+        <section id="errors" class="block">
+
+            <h3>Fixing Errors with Haddock 2.4</h3>
+            <p>Ok, so after days of scrolling you've finally found the right PDB files with a good resolution! Congratulations! You put them into Haddock 2.4 for testing and... <strong>there's an error</strong>. What does this mean? What should I do? Why don't you like me Haddock?! Here are some tips to amend your relations with the Haddock Gods! <a href="https://www.bonvinlab.org/software/bpg/">Make sure to visit the Haddock 2.4 Best Practice Guides for better checking!</a></p>
+
+            <ol>
+                <h4><li>Numbering Error</li></h4>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error: </span>
+                    Error in PDB file.<br>Your PDB contains multiple chains with overlapping numbering: A14 - B14 Consider selecting a chain or splitting your PDB<br>
+                </div>
+                <p>This error can be caused because your PDB file either has multiple protein in it, or because it is not numbered properly. To fix the first issue, open the file in ChimeraX to see if you have more than one protein, then seperate them out into seperate PDB files in a text editor. For the second issue, put the file into the tool above and renumber it.</p>
+
+                <h4><li>Multiple Forms of the Same Residue Error</li></h4>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error: </span>
+                    Error in PDB file.<br>Issue when parsing the PDB file at line <b>2250</b>.<br>Your PDB contains multiple forms of the same residue <b>HIS 210</b>. This is not supported in the current form. If you would like to supply multiple conformations, please create an ensemble.<br><br>
+                </div>
+                <p>PDB files can contain mulitple variations of one residue. Haddock is saying it doesn't know which variation to chose. Open the file up in a text editor and scroll down to the problematic residue. You will notice that some atoms of that residue have an extra character (normally "A" or "B") before the residue type that denote the different variations. Delete the extra variations and remove "A" to make that line look like the rest of them. (Make sure to make a backup before doing this!)</p>
+                
+                <h4><li>Weird Ions Error</li></h4>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error: </span>
+                    Error in PDB file.<br>Issue when parsing the PDB file at line <b>5411</b>.<br>Your PDB contains an elemental ion <b>ZN<b> without specified charge<br><br>
+                </b></b></div>
+            <p>Ions in PDB files should be annotated with their necessary charge, but sometimes they're not. The easiest, albeit not the greatest, solution to the problem is to remove the problematic ion in a text editor.</p>
+                
+                <h4><li>HETATM Error</li></h4>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error: </span>
+                    Error in PDB file.<br>Issue when parsing the PDB file at line <b>25028</b>.<br>Your PDB contains an unknown residue <b>NAG</b> using ATOM record, please check the <a href="/haddock2.4/library" target="_blank">HADDOCK library</a>  for a list of supported modified residues. Should this be formatted with record HETATM instead?<br><br>
+                </div>
+                <p>Some PDB files incorrectly label their atoms. For example, some atoms are part of residues, others are sugars, and so on. In this case, NAG refers to a 2-N-acetyl-beta-D-glucopyranose, a Carbohydrate. But Haddock is reading this as if it were a residue and is confused. <a href="https://wenmr.science.uu.nl/haddock2.4/library">Here is the library of all supported modified residues.</a> Open the PDB File in a text editor and CTRL (CMD) + F to find the issue (in this case, search for "NAG"). If the start of those lines begins with "ATOM", replace it with "HETATM" to indicate that those atoms are not residues. Make sure to preserve the structure of the document! TIP: select all problematic lines by SHIFT + CLCIKING them, copy and paste them into a new document, find and replace all instances of "ATOM" with "HETATM" (add or remove space to preserve structure), select all, copy again,  go back to original document, and paste to overide the old lines.</p>
+            </ol>
+
+
+        </section>
 
     </body>
 </html>

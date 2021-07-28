@@ -1,17 +1,16 @@
 @import 'https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css';
 
 body {
-    width: 75%;
-    padding: 0;
+    width: clamp(560px, 75%, 992px);
     margin: 3rem auto;
+    padding: 0;
+    min-height: 100%;
 }
 
 #renumber-output {
     clear: both;
     float: left;
     white-space: pre-wrap;
-    /* font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-        Liberation Mono, monospace; */
     font-family: monospace;
     background-color: #f6f8fa;
     max-width: fit-content;
@@ -19,4 +18,24 @@ body {
 
 #renumber-copy {
     display: none;
+}
+
+#errors {
+    clear: both;
+}
+
+.alert {
+    text-align: left;
+    font: small Verdana, Sans-serif;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    font-size: 1rem;
 }
