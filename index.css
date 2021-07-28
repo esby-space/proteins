@@ -1,0 +1,22 @@
+@import 'https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css';
+
+body {
+    width: 75%;
+    padding: 0;
+    margin: 3rem auto;
+}
+
+#renumber-output {
+    clear: both;
+    float: left;
+    white-space: pre-wrap;
+    /* font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+        Liberation Mono, monospace; */
+    font-family: monospace;
+    background-color: #f6f8fa;
+    max-width: fit-content;
+}
+
+#renumber-copy {
+    display: none;
+}

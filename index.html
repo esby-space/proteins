@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script defer src="index.js"></script>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body class="content">
+
+        <header>
+
+            <h1>Protein Modeling Resources</h1>
+            <hr />
+
+        </header>
+
+        <section id="video" class="block">
+            <h3>Guide to Protein Modeling Tools</h3>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xemYmtd8H0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>A really big thank you to other protein modeling students for making this guide!</p>
+        </section>
+
+        <section id="renumber">
+
+            <h3>Renumbering PDB Files for Haddock 2.4</h2>
+
+            <p>This script was originally created by <a href="https://github.com/haddocking/pdb-tools/tree/master/pdbtools">Joao Rodriguez</a>. Translation and webpage by Sebastian Branch.</p>
+
+            <form id="renumber-form" class="block" autocomplete="off">
+
+                <label for="renumber-file" class="label">PDB File to Renumber:</label>
+                <div id="file-interface" class="file is-primary">
+                    <label class="file-label">
+                        <input type="file" id="renumber-file" class="file-input"/><br />
+                        <span class="file-cta">
+                            <span class="file-label">
+                                Choose a file
+                            </span>
+                        </span>
+                        <span class="file-name">
+                            No file uploaded    
+                        </span>
+                    </label>
+                </div>
+                <p class="help">Must be a .pdb file</p>
+
+                <label for="renumber-start" class="label">Starting Residue Number:</label>
+                <input type="number" value="1" id="renumber-start" class="input is-primary"/><br />
+                <p class="help">Starting PDB is normally 1</p>
+
+                <button type="button" id="renumber-submit" class="button is-primary">
+                    Renumber this!
+                </button>
+
+            </form>
+
+            <button id="renumber-copy" class="block button is-primary">Copy!</button>
+            <p id="renumber-output" class="block"></p>
+
+        </section>
+
+        <footer>
+            <p>This website was created using Bluma.</p>
+        </footer>
+
+    </body>
+</html>
